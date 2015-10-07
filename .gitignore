@@ -1,0 +1,4 @@
+*.pyc
+tutorial/static/front/bower_componentes/
+.DB_store
+*.
