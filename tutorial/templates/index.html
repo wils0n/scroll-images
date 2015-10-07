@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="demo">
+<head>
+    <meta charset="UTF-8">
+    <title>me-lazyload</title>
+    <style>
+        .title{
+            text-align: center;
+            font-size: 28px;
+            margin: 40px 0 10px 0;
+        }
+        .container{
+            width:102px;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+        .wrap{
+            margin: 5px 0;
+            border: 1px solid #ccc;
+        }
+        .wrap img{
+            width: 100px;
+            height: 100px;
+        }
+
+    </style>
+</head>
+<body ng-controller="mainCtrl">
+    <h2 class="title">me-lazyload</h2>
+    <div class="container">
+        <div class="wrap" ng-repeat="user in users">
+            <img lazy-src="[[ user.avatar ]]" alt="">
+        </div>
+    </div>
+
+    <script src="http://cdn.staticfile.org/angular.js/1.2.18/angular.min.js"></script>
+    <script src="{{STATIC_URL}}front/me-lazyload.js"></script>
+    <script type="text/javascript">
+      var app = angular.module('demo', ['me-lazyload']).
+        config(function($interpolateProvider){
+          $interpolateProvider.startSymbol('[[').endSymbol(']]');
+      });
+
+      app.constant('constants', {
+        userAPIurl: 'http://127.0.0.1:8000/api/users/'
+      });
+
+    </script>
+    <script src="{{STATIC_URL}}front/app.js"></script>
+</body>
+</html>
